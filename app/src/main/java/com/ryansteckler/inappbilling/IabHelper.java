@@ -216,7 +216,17 @@ public class IabHelper {
 
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
+                final boolean JUMP_THROUGH = true;
                 if (mDisposed) return;
+                if (JUMP_THROUGH) {
+                    // Hzj_jie: Jump through billing rquests.
+                    if (listener != null) {
+                        listener.onIabSetupFinished(new IabResult(BILLING_RESPONSE_RESULT_OK,
+                                                    "Setup successful."));
+                    }
+                    return;
+                }
+
                 logDebug("Billing service connected.");
                 mService = IInAppBillingService.Stub.asInterface(service);
                 String packageName = mContext.getPackageName();
