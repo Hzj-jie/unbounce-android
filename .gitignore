@@ -8,3 +8,5 @@
 +.project
 +.classpath
 +app/src/main/.settings
+*.keystore
+*.un~
